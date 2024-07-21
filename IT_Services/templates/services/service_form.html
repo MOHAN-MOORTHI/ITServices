@@ -1,0 +1,22 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ service.service_name if service else 'Create Service' }} - IT Services</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h2>{{ service.service_name if service else 'Create Service' }}</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">{{ 'Update' if service else 'Create' }}</button>
+        </form>
+        <a href="{% url 'service_list' %}" class="btn btn-secondary mt-3">Back to Services</a>
+    </div>
+</body>
+</html>

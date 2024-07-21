@@ -1,0 +1,33 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - IT Services</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Services</h2>
+        <ul class="list-group">
+            {% for service in services %}
+                <li class="list-group-item">
+                    <h5>{{ service.service_name }}</h5>
+                    <p>Price: {{ service.service_price }}</p>
+                    <a href="{% url 'service_detail' service.pk %}" class="btn btn-info">View</a>
+                    <a href="{% url 'service_update' service.pk %}" class="btn btn-warning">Update</a>
+                    <form action="{% url 'service_delete' service.pk %}" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'service_create' %}" class="btn btn-success mt-3">Create Service</a>
+        <a href="{% url 'home' %}" class="btn btn-secondary mt-3">Back to Home</a>
+    </div>
+</body>
+</html>
